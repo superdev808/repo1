@@ -1,11 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PostForm from './PostForm'
+import AllPost from './AllPost'
 
 function App() {
   return (
     <div className="App">
-      <h1> Hello React! </h1>
+      <PostForm />
+      <AllPost />
     </div>
   );
 }
