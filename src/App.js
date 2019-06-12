@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import PostForm from './PostForm';
-import AllPost from './AllPost';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Dashboard from './Components/Dashboard'
+import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory()
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="navbar">
-          <h2 className="center ">Post It</h2>
-        </div>
-        <PostForm />
-        <AllPost />
+      <div>
+        <Router history={history}>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about/">About</Link>
+                </li>
+                <li>
+                  <Link to="/users/">Users</Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <Route path="/" component={Dashboard} />
+        </Router>
       </div>
     );
   }
