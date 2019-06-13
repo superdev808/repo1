@@ -1,22 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as postActions from '../redux/actions/actions.post'
+
 class PostForm extends Component {
     handleSubmit = (e) => {
-        e.preventDefault();
-        const title = this.getTitle.value;
-        const message = this.getMessage.value;
+        e.preventDefault()
+        const { actions } = this.props
+        const title = this.getTitle.value
+        const message = this.getMessage.value
         const data = {
             id: new Date(),
             title,
             message,
             editing: false
         }
-        this.props.dispatch({
-            type: 'ADD_POST',
-            data
-        })
-        this.getTitle.value = '';
-        this.getMessage.value = '';
+
+        /*        this.props.dispatch({
+                    type: 'ADD_POST',
+                    data
+                })*/
+        //console.log(">>", actions)
+        actions.postAppend(data)
+        this.getTitle.value = ''
+        this.getMessage.value = ''
     }
     render() {
         return (
@@ -30,7 +37,16 @@ class PostForm extends Component {
                     <button>Post</button>
                 </form>
             </div>
-        );
+        )
     }
 }
-export default connect()(PostForm);
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(postActions, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link } from "react-router-dom";
 import Dashboard from './Components/Dashboard'
 import { createBrowserHistory } from 'history';
 
